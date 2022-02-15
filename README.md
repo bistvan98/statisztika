@@ -1,0 +1,2 @@
+# statisztika
+statisztika feladat
