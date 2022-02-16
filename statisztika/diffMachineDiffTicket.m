@@ -1,16 +1,14 @@
 function [y] = diffMachineDiffTicket()
-    disp('///// Elso teszt vizsgalata \\\\\')
-
     % A találatokat tároló változók
     notWon = 0;
     twoNumbers = 0;
     threeNumbers = 0;
     fourNumbers = 0;
     fiveNumbers = 0;
-
+    
     % Hány húzást vizsgáljon a program?
     numberOfTests = input('Hany esetet vizsgaljon a program? ');
-
+    
     % Kiírja az összes esetet vagy csak a nyertes szelvényeket?
     while 1
         needAll = input('Kiirja a program az osszes esetet (1) vagy csak a nyertes szelvenyeket (2)? ');
@@ -141,7 +139,11 @@ function [y] = diffMachineDiffTicket()
     % Annak az esélye, hogy a játékos nyerni tud
     winningChance = ((twoNumbers + threeNumbers + fourNumbers + fiveNumbers)/numberOfTests) * 100;
     
-    fprintf('Esely ahhoz, hogy nyerjen a jatekos: %.4f %% ', winningChance);
+    fprintf('Esely ahhoz, hogy nyerjen a jatekos: %.4f %% \n', winningChance);
+    fprintf('Esely ahhoz, hogy a jatekosnak 2 talalata legyen: %.4f %% \n', (twoNumbers / numberOfTests) * 100);
+    fprintf('Esely ahhoz, hogy a jatekosnak 3 talalata legyen: %.4f %% \n', (threeNumbers / numberOfTests) * 100);
+    fprintf('Esely ahhoz, hogy a jatekosnak 4 talalata legyen: %.4f %% \n', (fourNumbers / numberOfTests) * 100);
+    fprintf('Esely ahhoz, hogy a jatekosnak 5 talalata legyen: %.4f %% \n', (fiveNumbers / numberOfTests) * 100);
     
     % A teszt során használt adatok összegyűjtése
     y = zeros(1,6);
@@ -151,6 +153,8 @@ function [y] = diffMachineDiffTicket()
     y(4) = threeNumbers;
     y(5) = fourNumbers;
     y(6) = fiveNumbers;
+    
+    y
     
     % Oszlopdiagram készítése
     bar(y)

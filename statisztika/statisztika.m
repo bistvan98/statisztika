@@ -24,18 +24,22 @@ while 1
     % Ha a felhasználó 1-est ad meg, akkor a program az első tesztesetet
     % fogja lefuttatni
     elseif(choose == 1)
+        disp('///// Elso teszt vizsgalata \\\\\')
         diffMachineDiffTicket();
         disp(' ');
     % 2-es teszteset
     elseif(choose == 2)
+        disp('///// Masodik teszt vizsgalata \\\\\')
         sameMachineWithMoreTickets();
-        disp(' ');
+        disp(' ');  
     % 3-as teszteset
     elseif(choose == 3)
+        disp('///// Harmadik teszt vizsgalata \\\\\')
         diffMachineDiffTicketPrice();
         disp(' ');
     % 4-es teszteset
     elseif(choose == 4)
+        disp('///// Negyedik teszt vizsgalata \\\\\')
         sameMachineWithMoreTicketsPrice();
     % Nem megfelelő érték megadása esetén újra meg kell adni egyet
     else
