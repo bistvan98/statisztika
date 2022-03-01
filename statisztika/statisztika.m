@@ -14,35 +14,104 @@
 
 clear all
 
+% Használt változók
+allTests = zeros(1, 6);
+oneTicketCost = 300;
+twoNumbersPrize = 1985;
+threeNumbersPrize = 18935;
+fourNumbersPrize = 1410950;
+fiveNumbersPrize = 3348134835;
+
 % A program addig fut, amíg a felhasználó ki nem lép (0)
 while 1
     disp(' ');
-    choose = input('Melyik tesztet szeretne vegrehajtani? (1/2/3/4 - tesztek 0 - kilepes): ');
+    choose = input('Melyik tesztet szeretné végrehajtani? (1/2/3/4 - tesztek, 9 - eddigi adatok összesítve, 0 - kilépés): ');
     % Ha a felhasználó 0-t ad meg, akkor a program leáll
     if(choose == 0)
         break; 
     % Ha a felhasználó 1-est ad meg, akkor a program az első tesztesetet
     % fogja lefuttatni
     elseif(choose == 1)
-        disp('///// Elso teszt vizsgalata \\\\\')
-        diffMachineDiffTicket();
+        disp('///// Első teszt vizsgálata \\\\\')
+        allTests = allTests + diffMachineDiffTicket();
         disp(' ');
     % 2-es teszteset
     elseif(choose == 2)
-        disp('///// Masodik teszt vizsgalata \\\\\')
-        sameMachineWithMoreTickets();
+        disp('///// Második teszt vizsgálata \\\\\')
+        allTests = allTests + sameMachineWithMoreTickets();
         disp(' ');  
     % 3-as teszteset
     elseif(choose == 3)
-        disp('///// Harmadik teszt vizsgalata \\\\\')
-        diffMachineDiffTicketPrice();
+        disp('///// Harmadik teszt vizsgálata \\\\\')
+        allTests = allTests + diffMachineDiffTicketPrice();
         disp(' ');
     % 4-es teszteset
     elseif(choose == 4)
-        disp('///// Negyedik teszt vizsgalata \\\\\')
-        sameMachineWithMoreTicketsPrice();
+        disp('///// Negyedik teszt vizsgálata \\\\\')
+        allTests = allTests + sameMachineWithMoreTicketsPrice();
+        disp(' ');
+    elseif(choose == 9)
+        disp('///// Eddigi tesztek eredményei: \\\\\')
+        
+        disp('///// Szelvény adatok: \\\\\');
+        allTests
+        
+        disp('///// Összes költség, nyereség: \\\\\');
+        
+        disp('Szelvények költsége: ');
+        cost = allTests(1) * oneTicketCost
+        
+        disp('// Összes szelvény: \\');
+        fprintf('%d\n', allTests(1));
+        
+        disp('// Összes nem nyert szelvény: \\');
+        fprintf('%d\n', allTests(2));
+        
+        disp('// Két találatos nyereség: \\');
+        two = allTests(3) * twoNumbersPrize;
+        fprintf('%d, %d darab\n', two, allTests(3));
+        
+        disp('// Három találatos nyereség: \\');
+        three = allTests(4) * threeNumbersPrize;
+        fprintf('%d, %d darab\n', three, allTests(4));
+        
+        disp('// Négy találatos nyereség: \\');
+        four = allTests(5) * fourNumbersPrize;
+        fprintf('%d, %d darab\n', four, allTests(5));
+        
+        disp('// Öt találatos nyereség: \\');
+        five = allTests(6) * fiveNumbersPrize;
+        fprintf('%d, %d darab\n', five, allTests(6));
+        
+        disp('// Összes nyereség: \\');
+        allPrize = two + three + four + five;
+        fprintf('%d\n', allPrize);
+        
+        disp('// Eddigi nyereség / veszteség: \\');
+        fprintf('%d\n', allPrize - cost);
+        
+        onePercentage = allTests(1) / 100;      
+        disp('// Találatok százalékban: \\');
+        disp(' ');
+        
+        for k = 2:5
+            fprintf('%d találat: ', k);
+            if(allTests(k + 1) == 0)
+                disp('0 %');
+                disp(' ');
+            else
+               percentageResult = allTests(k + 1) / onePercentage;
+               fprintf('%.4f %%\n\n', percentageResult);
+            end
+        end
+        
+        bar(allTests)
+        set(gca,'xticklabel',{'Osszes', 'Nem nyert', 'Ketto', 'Harom', 'Negy', 'Ot'})
+        set(gcf,'position',[100,100,800,650])
+        
+        disp(' ');
     % Nem megfelelő érték megadása esetén újra meg kell adni egyet
     else
-        disp('Ezt a szamot nem adhatja meg! Adjon meg egy uj szamot! ');
+        disp('Ezt a számot nem adhatja meg! Adjon meg egy új számot! ');
     end
 end

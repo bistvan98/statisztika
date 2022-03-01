@@ -1,4 +1,4 @@
-function [] = diffMachineDiffTicketPrice()
+function [results] = diffMachineDiffTicketPrice()
     % A diffMachineDiffTicket függvény meghívása, visszatérési
     % értékének mentése (y) - szelvények száma, nyertes szelvények száma
     % (2, 3, 4, 5), nem nyert szelvények
