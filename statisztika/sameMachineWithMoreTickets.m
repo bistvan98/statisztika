@@ -1,21 +1,24 @@
-function [y] = sameMachineWithMoreTickets()
+function [y, occurenceOfNumbers] = sameMachineWithMoreTickets()
     % A találatokat tároló változók
     notWon = 0;
     twoNumbers = 0;
     threeNumbers = 0;
     fourNumbers = 0;
     fiveNumbers = 0;
+    
+    % A számok előfordulását menti
+    occurenceOfNumbers = zeros(1, 90);
 
     % Hány húzást vizsgáljon a program?
-    numberOfTests = input('Hany esetet vizsgaljon a program? ');
+    numberOfTests = input('Hány esetet vizsgáljon a program? ');
 
     % Kiírja az összes esetet vagy csak a nyertes szelvényeket?
     while 1
-        needAll = input('Kiirja a program az osszes esetet (1) vagy csak a nyertes szelvenyeket (2)? ');
+        needAll = input('Kiírja a program az összes esetet (1) vagy csak a nyertes szelvényeket (2)? ');
         if(needAll == 1 || needAll == 2)
             break; 
         else
-            disp('Csak az 1 (minden adat) es a 2 (csak nyertes) valasz adahto meg!' );
+            disp('Csak az 1 (minden adat) és a 2 (csak nyertes) válasz adahtó meg!' );
         end
     end
 
@@ -23,6 +26,11 @@ function [y] = sameMachineWithMoreTickets()
 
     % 5 random, nem ismétlődő szám generálása 1 és 90 között a gép részére
     machineNumbers = randperm(90,5);
+    
+    % A kihúzott számok előfordulását elmenti
+    for k = 1:5
+        occurenceOfNumbers(machineNumbers(k)) = occurenceOfNumbers(machineNumbers(k)) + 1;
+    end
 
     for i = 1:numberOfTests
         % 5 random, nem ismétlődő szám generálása 1 és 90 között a játékos
@@ -47,22 +55,22 @@ function [y] = sameMachineWithMoreTickets()
                 notWon = notWon + 1;
                 if(needAll == 1)
                     % A gép által kihúzott számok kiírása
-                    disp('A gep altal kihuzott szamok: ');
+                    disp('A gép által kihúzott számok: ');
                     disp(machineNumbers);
                 
                     % A játékos által választott számok kiírása
-                    disp('A jatekos altal valasztott szamok: ');
+                    disp('A játékos által választott számok: ');
                     disp(playerNumbers);
                 end
             case 1
                 notWon = notWon + 1;
                 if(needAll == 1)
                     % A gép által kihúzott számok kiírása
-                    disp('A gep altal kihuzott szamok: ');
+                    disp('A gép által kihúzott számok: ');
                     disp(machineNumbers);
                 
                     % A játékos által választott számok kiírása
-                    disp('A jatekos altal valasztott szamok: ');
+                    disp('A játékos által választott számok: ');
                     disp(playerNumbers);
                 end
             case 2
@@ -71,11 +79,11 @@ function [y] = sameMachineWithMoreTickets()
                 disp(' ');
             
                 % A gép által kihúzott számok kiírása
-                disp('A gep altal kihuzott szamok: ');
+                disp('A gép által kihúzott számok: ');
                 disp(machineNumbers);
                 
                 % A játékos által választott számok kiírása
-                disp('A jatekos altal valasztott szamok: ');
+                disp('A játékos által választott számok: ');
                 disp(playerNumbers);
             case 3
                 threeNumbers = threeNumbers + 1;
@@ -83,11 +91,11 @@ function [y] = sameMachineWithMoreTickets()
                 disp(' ');
             
                 % A gép által kihúzott számok kiírása
-                disp('A gep altal kihuzott szamok: ');
+                disp('A gép által kihúzott számok: ');
                 disp(machineNumbers);
                 
                 % A játékos által választott számok kiírása
-                disp('A jatekos altal valasztott szamok: ');
+                disp('A játékos által választott számok: ');
                 disp(playerNumbers);
             case 4
                 fourNumbers = fourNumbers + 1;
@@ -95,11 +103,11 @@ function [y] = sameMachineWithMoreTickets()
                 disp(' ');
             
                 % A gép által kihúzott számok kiírása
-                disp('A gep altal kihuzott szamok: ');
+                disp('A gép által kihúzott számok: ');
                 disp(machineNumbers);
                 
                 % A játékos által választott számok kiírása
-                disp('A jatekos altal valasztott szamok: ');
+                disp('A játékos által választott számok: ');
                 disp(playerNumbers);
             case 5
                 fiveNumbers = fiveNumbers + 1;
@@ -108,38 +116,38 @@ function [y] = sameMachineWithMoreTickets()
                 disp(' ');
             
                 % A gép által kihúzott számok kiírása
-                disp('A gep altal kihuzott szamok: ');
+                disp('A gép által kihúzott számok: ');
                 disp(machineNumbers);
                 
                 % A játékos által választott számok kiírása
-                disp('A jatekos altal valasztott szamok: ');
+                disp('A játékos által választott számok: ');
                 disp(playerNumbers);
         end
     end
 
     % A vizsgálatok után keletkezett adatok kiírása
-    disp('A vegeredmeny: ');
+    disp('A végeredmény: ');
     disp(' ');
-    disp('Osszesen jatszott jatekok szama: ');
+    disp('Összesen játszott játékok száma: ');
     disp(numberOfTests);
-    disp('Nem nyert szelvenyek szama: ');
+    disp('Nem nyert szelvények száma: ');
     disp(notWon);
-    disp('2 talaltos szelvenyek szama: ');
+    disp('2 találatos szelvények száma: ');
     disp(twoNumbers);
-    disp('3 talalatos szelvenyek szama: ');
+    disp('3 találatos szelvények száma: ');
     disp(threeNumbers);
-    disp('4 talalatos szelvenyek szama: ');
+    disp('4 találatos szelvények száma: ');
     disp(fourNumbers);
-    disp('5 talalatos szelvenyek szama: ');
+    disp('5 találatos szelvények száma: ');
     disp(fiveNumbers);
 
     % Annak az esélye, hogy a játékos nyerni tud
     winningChance = ((twoNumbers + threeNumbers + fourNumbers + fiveNumbers)/numberOfTests) * 100;
-    fprintf('Esely ahhoz, hogy nyerjen a jatekos: %.4f %% \n', winningChance);
-    fprintf('Esely ahhoz, hogy a jatekosnak 2 talalata legyen: %.4f %% \n', (twoNumbers / numberOfTests) * 100);
-    fprintf('Esely ahhoz, hogy a jatekosnak 3 talalata legyen: %.4f %% \n', (threeNumbers / numberOfTests) * 100);
-    fprintf('Esely ahhoz, hogy a jatekosnak 4 talalata legyen: %.4f %% \n', (fourNumbers / numberOfTests) * 100);
-    fprintf('Esely ahhoz, hogy a jatekosnak 5 talalata legyen: %.4f %% \n', (fiveNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy nyerjen a játékos: %.4f %% \n', winningChance);
+    fprintf('Esély ahhoz, hogy a játékosnak 2 találata legyen: %.4f %% \n', (twoNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy a játékosnak 3 találata legyen: %.4f %% \n', (threeNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy a játékosnak 4 találata legyen: %.4f %% \n', (fourNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy a játékosnak 5 találata legyen: %.4f %% \n', (fiveNumbers / numberOfTests) * 100);
     
     % A teszt során használt adatok összegyűjtése
     y = zeros(1,6);

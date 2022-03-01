@@ -15,17 +15,21 @@
 clear all
 
 % Használt változók
-allTests = zeros(1, 6);
-oneTicketCost = 300;
-twoNumbersPrize = 1985;
-threeNumbersPrize = 18935;
-fourNumbersPrize = 1410950;
-fiveNumbersPrize = 3348134835;
+allTests = zeros(1, 6); % A szelvények adatai
+allTestsTemp = zeros(1, 6); % Ideiglenes tárolása aszelvények adatainak
+occurenceOfNumbers = zeros(1, 90); % A kihúzott számok előfordulását tárolja
+occurenceOfNumbersTemp = zeros(1, 90); % Ideiglenes tárolása a kihúzott számoknak
+
+oneTicketCost = 300; % Egy lottó szelvény ára
+twoNumbersPrize = 1985; % Két találatos nyeremény
+threeNumbersPrize = 18935; % Három találatos nyeremény
+fourNumbersPrize = 1410950; % Négy találatos nyeremény
+fiveNumbersPrize = 3348134835; % Öt találatos nyeremény
 
 % A program addig fut, amíg a felhasználó ki nem lép (0)
 while 1
     disp(' ');
-    choose = input('Melyik tesztet szeretné végrehajtani? (1/2/3/4 - tesztek, 9 - eddigi adatok összesítve, 0 - kilépés): ');
+    choose = input('Melyik tesztet szeretné végrehajtani? (1/2/3/4 - tesztek, 5 - számok előfordulása, 9 - eddigi adatok összesítve, 0 - kilépés): ');
     % Ha a felhasználó 0-t ad meg, akkor a program leáll
     if(choose == 0)
         break; 
@@ -33,23 +37,52 @@ while 1
     % fogja lefuttatni
     elseif(choose == 1)
         disp('///// Első teszt vizsgálata \\\\\')
-        allTests = allTests + diffMachineDiffTicket();
+        % allTests = allTests + diffMachineDiffTicket();
+        [allTestsTemp, occurenceOfNumbersTemp] = diffMachineDiffTicket();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
         disp(' ');
+        
     % 2-es teszteset
     elseif(choose == 2)
         disp('///// Második teszt vizsgálata \\\\\')
-        allTests = allTests + sameMachineWithMoreTickets();
+        [allTestsTemp, occurenceOfNumbersTemp] = sameMachineWithMoreTickets();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
         disp(' ');  
+        
     % 3-as teszteset
     elseif(choose == 3)
         disp('///// Harmadik teszt vizsgálata \\\\\')
-        allTests = allTests + diffMachineDiffTicketPrice();
+        [allTestsTemp, occurenceOfNumbersTemp] = diffMachineDiffTicketPrice();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
         disp(' ');
+        
     % 4-es teszteset
     elseif(choose == 4)
         disp('///// Negyedik teszt vizsgálata \\\\\')
-        allTests = allTests + sameMachineWithMoreTicketsPrice();
+        [allTestsTemp, occurenceOfNumbersTemp] = sameMachineWithMoreTicketsPrice();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
         disp(' ');
+        
+    % Számok előfordulása    
+    elseif(choose == 5)
+        disp('///// A kihúzott számok előfordulása az eddigi tesztekben: \\\\\')
+        t = 1:1:90;
+        plot(t, occurenceOfNumbers)
+        disp(' ')
+        
+    % Adatok összesítve
     elseif(choose == 9)
         disp('///// Eddigi tesztek eredményei: \\\\\')
         
@@ -110,6 +143,7 @@ while 1
         set(gcf,'position',[100,100,800,650])
         
         disp(' ');
+        
     % Nem megfelelő érték megadása esetén újra meg kell adni egyet
     else
         disp('Ezt a számot nem adhatja meg! Adjon meg egy új számot! ');
