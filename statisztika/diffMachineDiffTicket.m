@@ -166,6 +166,6 @@ function [y, occurenceOfNumbers] = diffMachineDiffTicket()
     
     % Oszlopdiagram készítése
     bar(y)
-    set(gca,'xticklabel',{'Osszes', 'Nem nyert', 'Ketto', 'Harom', 'Negy', 'Ot'})
+    set(gca,'xticklabel',{'Összes', 'Nem nyert', 'Kettő', 'Három', 'Négy', 'Öt'})
     set(gcf,'position',[100,100,800,650]) 
 end
