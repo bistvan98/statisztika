@@ -1,4 +1,4 @@
-function [y] = diffMachineDiffTicket()
+function [y, occurenceOfNumbers] = diffMachineSameTicket()
     % A találatokat tároló változók
     notWon = 0;
     twoNumbers = 0;
@@ -7,7 +7,7 @@ function [y] = diffMachineDiffTicket()
     fiveNumbers = 0;
     
     % A számok előfordulását menti
-    
+    occurenceOfNumbers = zeros(1, 90);
     
     % Hány húzást vizsgáljon a program?
     numberOfTests = input('Hány esetet vizsgáljon a program? ');
@@ -24,13 +24,21 @@ function [y] = diffMachineDiffTicket()
 
     disp(' ');
 
+    % 5 random, nem ismétlődő szám generálása 1 és 90 között a játékos
+    % részére
+    playerNumbers = randperm(90,5);
+    disp('A játékos számai: ')
+    playerNumbers
+    disp(' ')
+    
     for i = 1:numberOfTests
         % 5 random, nem ismétlődő szám generálása 1 és 90 között a gép részére
         machineNumbers = randperm(90,5);
-    
-        % 5 random, nem ismétlődő szám generálása 1 és 90 között a játékos
-        % részére
-        playerNumbers = randperm(90,5);
+        
+        % A kihúzott számok előfordulását elmenti
+        for k = 1:5
+            occurenceOfNumbers(machineNumbers(k)) = occurenceOfNumbers(machineNumbers(k)) + 1;
+        end
     
         % Vizsgálat, hogy hány számot talált el a játékos
         correctNumbers = 0;
@@ -142,11 +150,11 @@ function [y] = diffMachineDiffTicket()
     % Annak az esélye, hogy a játékos nyerni tud
     winningChance = ((twoNumbers + threeNumbers + fourNumbers + fiveNumbers)/numberOfTests) * 100;
     
-    fprintf('Esely ahhoz, hogy nyerjen a jatekos: %.4f %% \n', winningChance);
-    fprintf('Esely ahhoz, hogy a jatekosnak 2 talalata legyen: %.4f %% \n', (twoNumbers / numberOfTests) * 100);
-    fprintf('Esely ahhoz, hogy a jatekosnak 3 talalata legyen: %.4f %% \n', (threeNumbers / numberOfTests) * 100);
-    fprintf('Esely ahhoz, hogy a jatekosnak 4 talalata legyen: %.4f %% \n', (fourNumbers / numberOfTests) * 100);
-    fprintf('Esely ahhoz, hogy a jatekosnak 5 talalata legyen: %.4f %% \n', (fiveNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy nyerjen a játékos: %.4f %% \n', winningChance);
+    fprintf('Esély ahhoz, hogy a játékosnak 2 találata legyen: %.4f %% \n', (twoNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy a játékosnak 3 találata legyen: %.4f %% \n', (threeNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy a játékosnak 4 találata legyen: %.4f %% \n', (fourNumbers / numberOfTests) * 100);
+    fprintf('Esély ahhoz, hogy a játékosnak 5 találata legyen: %.4f %% \n', (fiveNumbers / numberOfTests) * 100);
     
     % A teszt során használt adatok összegyűjtése
     y = zeros(1,6);
@@ -164,3 +172,4 @@ function [y] = diffMachineDiffTicket()
     set(gca,'xticklabel',{'Osszes', 'Nem nyert', 'Ketto', 'Harom', 'Negy', 'Ot'})
     set(gcf,'position',[100,100,800,650]) 
 end
+

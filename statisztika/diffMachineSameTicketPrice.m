@@ -1,13 +1,5 @@
-function [results, occurenceOfNumbers] = diffMachineDiffTicketPrice()
-    % A számok előfordulását menti
-    occurenceOfNumbers = zeros(1, 90);
-    
-    % A diffMachineDiffTicket függvény meghívása, visszatérési
-    % értékének mentése (y) - szelvények száma, nyertes szelvények száma
-    % (2, 3, 4, 5), nem nyert szelvények
-    % occurenceOfNumbers - a kihúzott számok előford
-    
-    [y] = diffMachineDiffTicket();
+function [results, occurenceOfNumbers] = diffMachineSameTicketPrice()
+    [y, occurenceOfNumbers] = diffMachineSameTicket();
     results = y;
 
     % Az 5-ös lottó nyereményei 2022. 2. héten. A számítások ezeken az adatokon
@@ -33,3 +25,4 @@ function [results, occurenceOfNumbers] = diffMachineDiffTicketPrice()
     fprintf('A öt szám eltalálásáért nyert összeg: %d \n', allFiveNumberPrize);
     fprintf('Végső nyereség / veszteség: %d \n', (allTwoNumberPrize + allThreeNumberPrize + allFourNumberPrize + allFiveNumberPrize) - allTicketCost);
 end
+

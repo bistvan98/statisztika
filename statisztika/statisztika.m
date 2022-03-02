@@ -7,10 +7,17 @@
 %   szelvénnyel? Egy vizsgálat menete: A gép húz 5 random, nem ismétlődő
 %   számot 1 és 90 között, a játékos pedig X alkalommal választ 5 random, nem
 %   ismétlődő számot ugyanahhoz a szelvényhez.
-% 3) Kiszámolja, hogy az 1)-es vizsgálat esetén X húzás után hány forintot
+% 3) Ugyanazok a számok más-más nyerő számokkal.
+% 4) Kiszámolja, hogy az 1)-es vizsgálat esetén X húzás után hány forintot
 %   nyert a játékos, illetve hány forintot költött el szelvényekre.
-% 4) Kiszámolja, hogy a 2)-es vizsgálat esetén X szelvény vásárlásával hány
+% 5) Kiszámolja, hogy a 2)-es vizsgálat esetén X szelvény vásárlásával hány
 %   forintot nyer a játékos 1 húzás esetén, illetve hány forintot költött el szelvényekre.
+% 6) Kiszámolja, hogy a 3)-as vizsgálat esetén X szelvény vásárlásával hány
+%   forintot nyert a játékos, illetve mennyit költött szelvényekre. 
+% 7) Az első három tesztesetet alapul véve addig generál eseteket, amíg nem
+%   lesz egy 5-9s találat, majd az ebből kapott adatokat sszefoglalja.
+% 8) Diagram segítségével ábrázolja az előfordult számokat.
+% 9) A meglévő adatok felhasználásával statisztikákat jelenít meg.
 
 clear all
 
@@ -29,7 +36,7 @@ fiveNumbersPrize = 3348134835; % Öt találatos nyeremény
 % A program addig fut, amíg a felhasználó ki nem lép (0)
 while 1
     disp(' ');
-    choose = input('Melyik tesztet szeretné végrehajtani? (1/2/3/4 - tesztek, 5 - számok előfordulása, 9 - eddigi adatok összesítve, 0 - kilépés): ');
+    choose = input('Melyik tesztet szeretné végrehajtani? (1/2/3/4/5/6/7 - tesztek, 8 - számok előfordulása, 9 - eddigi adatok összesítve, 0 - kilépés): ');
     % Ha a felhasználó 0-t ad meg, akkor a program leáll
     if(choose == 0)
         break; 
@@ -37,7 +44,6 @@ while 1
     % fogja lefuttatni
     elseif(choose == 1)
         disp('///// Első teszt vizsgálata \\\\\')
-        % allTests = allTests + diffMachineDiffTicket();
         [allTestsTemp, occurenceOfNumbersTemp] = diffMachineDiffTicket();
         occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
         occurenceOfNumbersTemp = zeros(1, 90);
@@ -58,6 +64,16 @@ while 1
     % 3-as teszteset
     elseif(choose == 3)
         disp('///// Harmadik teszt vizsgálata \\\\\')
+        [allTestsTemp, occurenceOfNumbersTemp] = diffMachineSameTicket();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
+        disp(' ');  
+        
+    % 4-es teszteset
+    elseif(choose == 4)
+        disp('///// Negyedik teszt vizsgálata \\\\\')
         [allTestsTemp, occurenceOfNumbersTemp] = diffMachineDiffTicketPrice();
         occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
         occurenceOfNumbersTemp = zeros(1, 90);
@@ -65,9 +81,9 @@ while 1
         allTestsTemp = zeros(1, 6);
         disp(' ');
         
-    % 4-es teszteset
-    elseif(choose == 4)
-        disp('///// Negyedik teszt vizsgálata \\\\\')
+    % 5-ös teszteset
+    elseif(choose == 5)
+        disp('///// Ötödik teszt vizsgálata \\\\\')
         [allTestsTemp, occurenceOfNumbersTemp] = sameMachineWithMoreTicketsPrice();
         occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
         occurenceOfNumbersTemp = zeros(1, 90);
@@ -75,8 +91,28 @@ while 1
         allTestsTemp = zeros(1, 6);
         disp(' ');
         
+    % 6-os teszteset    
+    elseif(choose == 6)
+        disp('///// Hatodik teszt vizsgálata \\\\\')
+        [allTestsTemp, occurenceOfNumbersTemp] = diffMachineSameTicketPrice();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
+        disp(' ');
+        
+    % 7-es teszteset    
+    elseif(choose == 7)    
+        disp('///// Hetedik teszt vizsgálata \\\\\')
+        [allTestsTemp, occurenceOfNumbersTemp] = waitForFive();
+        occurenceOfNumbers = occurenceOfNumbers + occurenceOfNumbersTemp;
+        occurenceOfNumbersTemp = zeros(1, 90);
+        allTests = allTests + allTestsTemp;
+        allTestsTemp = zeros(1, 6);
+        disp(' ');
+        
     % Számok előfordulása    
-    elseif(choose == 5)
+    elseif(choose == 8)
         disp('///// A kihúzott számok előfordulása az eddigi tesztekben: \\\\\')
         t = 1:1:90;
         plot(t, occurenceOfNumbers)
