@@ -136,23 +136,23 @@ while 1
         disp('// Összes nem nyert szelvény: \\');
         fprintf('%d\n', allTests(2));
         
-        disp('// Két találatos nyereség: \\');
+        disp('// Két találatos nyeremény: \\');
         two = allTests(3) * twoNumbersPrize;
         fprintf('%d, %d darab\n', two, allTests(3));
         
-        disp('// Három találatos nyereség: \\');
+        disp('// Három találatos nyeremény: \\');
         three = allTests(4) * threeNumbersPrize;
         fprintf('%d, %d darab\n', three, allTests(4));
         
-        disp('// Négy találatos nyereség: \\');
+        disp('// Négy találatos nyeremény: \\');
         four = allTests(5) * fourNumbersPrize;
         fprintf('%d, %d darab\n', four, allTests(5));
         
-        disp('// Öt találatos nyereség: \\');
+        disp('// Öt találatos nyeremény: \\');
         five = allTests(6) * fiveNumbersPrize;
         fprintf('%d, %d darab\n', five, allTests(6));
         
-        disp('// Összes nyereség: \\');
+        disp('// Összes nyeremény: \\');
         allPrize = two + three + four + five;
         fprintf('%d\n', allPrize);
         
