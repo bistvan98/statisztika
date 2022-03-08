@@ -7,7 +7,7 @@
 %   szelvénnyel? Egy vizsgálat menete: A gép húz 5 random, nem ismétlődő
 %   számot 1 és 90 között, a játékos pedig X alkalommal választ 5 random, nem
 %   ismétlődő számot ugyanahhoz a szelvényhez.
-% 3) Ugyanazok a számok más-más nyerő számokkal.
+% 3) Ugyanazok a számok más-más ny++erő számokkal.
 % 4) Kiszámolja, hogy az 1)-es vizsgálat esetén X húzás után hány forintot
 %   nyert a játékos, illetve hány forintot költött el szelvényekre.
 % 5) Kiszámolja, hogy a 2)-es vizsgálat esetén X szelvény vásárlásával hány
